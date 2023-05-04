@@ -21,6 +21,6 @@
   },
   "noImplicitAny": true,
   "noImplicitReturns": true,
-  "include": ["src"],
+  "include": ["src", "new/path/MyOrdes.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
