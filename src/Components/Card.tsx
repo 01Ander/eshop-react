@@ -1,9 +1,16 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../Context";
+
 interface CardProps {
   product: Product;
 }
 
 export const Card = ({ product }: CardProps): JSX.Element => {
   const { title, price, category, images } = product;
+  const context = useContext(ShoppingCartContext);
+  const handleAddCardProduct = (): void => {
+    context.setCount(context.count + 1);
+  };
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
       <figure className="relative mb-2 w-full h-4/5">
@@ -15,7 +22,7 @@ export const Card = ({ product }: CardProps): JSX.Element => {
           alt=""
           className="w-full h-full object-cover rounded-lg "
         />
-        <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full">
+        <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full" onClick={handleAddCardProduct}>
           +
         </div>
       </figure>

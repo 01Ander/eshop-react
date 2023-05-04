@@ -6,20 +6,23 @@ import MyOrders from "./MyOrders";
 import NotFound from "./NotFound";
 import SingIn from "./SingIn";
 import { Navbar } from "../Components/Navbar";
+import { ShoppingCartProvider } from "../Context";
 
 const App = (): JSX.Element => {
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/sing-in" element={<SingIn />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ShoppingCartProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/sing-in" element={<SingIn />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ShoppingCartProvider>
     </>
   );
 };
