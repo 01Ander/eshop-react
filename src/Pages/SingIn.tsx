@@ -1,8 +1,10 @@
+import { Layout } from "../Components/Layout"
+
 const SingIn = () => {
   return (
-    <div>
+    <Layout>
       singin
-    </div>
+    </Layout>
   )
 }
 

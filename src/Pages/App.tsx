@@ -5,11 +5,13 @@ import MyAccount from "./MyAccount";
 import MyOrders from "./MyOrders";
 import NotFound from "./NotFound";
 import SingIn from "./SingIn";
+import { Navbar } from "../Components/Navbar";
 
 const App = (): JSX.Element => {
   return (
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/my-account" element={<MyAccount />} />
