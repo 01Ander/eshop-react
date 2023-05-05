@@ -3,12 +3,13 @@ import { createContext, ReactNode, useState } from "react";
 type ShoppingCartContextType = {
   count: number;
   setCount: (count: number) => void;
-  // toggleProductDetail: () => void;
   isOpenProductDetail: boolean;
   openProductDetail: () => void;
   closeProductDetail: () => void;
   productToShow: Product;
   setProductToShow: (product: Product) => void;
+  cartProducts: Product[];
+  setCartProducts: (product: Product[]) => void;
 };
 
 type ShoppingCartProviderProps = {
@@ -31,6 +32,10 @@ export const ShoppingCartContext = createContext<ShoppingCartContextType>({
   setProductToShow: () => {
     // do nothing
   },
+  cartProducts: [],
+  setCartProducts: () => {
+    // do nothing
+  }
 });
 
 export const ShoppingCartProvider = ({
@@ -40,29 +45,26 @@ export const ShoppingCartProvider = ({
 
   const [isOpenProductDetail, setIsOpenProductDetail] =
     useState<boolean>(false);
-  // const toggleProductDetail = (): void => {
-  //   setIsOpenProductDetail(!isOpenProductDetail);
-  // };
   const openProductDetail = (): void => {
     setIsOpenProductDetail(true);
   };
   const closeProductDetail = (): void => {
     setIsOpenProductDetail(false);
   };
-
-
-
   const [productToShow, setProductToShow] = useState({} as Product);
+
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   const contextValue = {
     count,
     setCount,
-    // toggleProductDetail,
     openProductDetail,
     closeProductDetail,
     isOpenProductDetail,
     productToShow,
     setProductToShow,
+    cartProducts,
+    setCartProducts
   };
 
   return (

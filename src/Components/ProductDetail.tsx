@@ -20,7 +20,7 @@ export const ProductDetail = (): JSX.Element => {
       <div className="flex flex-col gap-4">
         <figure className="relative mb-2 w-full h-4/5">
           <img
-            src={context.productToShow?.images?.[0]}
+            src={context.productToShow?.images}
             alt=""
             className="w-full h-full object-cover rounded-lg "
           />

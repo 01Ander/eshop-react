@@ -9,8 +9,9 @@ interface CardProps {
 export const Card = ({ product }: CardProps): JSX.Element => {
   const { title, price, category, images } = product;
   const context = useContext(ShoppingCartContext);
-  const handleAddCardProduct = (): void => {
+  const handleAddCartProduct = (product: Product): void => {
     context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, product]);
   };
   const handleClickCard = (product: Product): void => {
     context.setProductToShow(product);
@@ -25,9 +26,11 @@ export const Card = ({ product }: CardProps): JSX.Element => {
         <img
           src={images[0]}
           alt=""
-          className="w-full h-full object-cover rounded-lg "
+          className="w-full h-full object-cover rounded-lg"
         />
-        <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full" onClick={handleAddCardProduct}>
+        <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full"
+          onClick={() => handleAddCartProduct(product)}
+        >
           <PlusIcon className="h-4 w-4 text-black" />
         </div>
       </figure>
