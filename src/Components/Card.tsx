@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../Context";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 interface CardProps {
   product: Product;
@@ -23,7 +24,7 @@ export const Card = ({ product }: CardProps): JSX.Element => {
           className="w-full h-full object-cover rounded-lg "
         />
         <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full" onClick={handleAddCardProduct}>
-          +
+          <PlusIcon className="h-4 w-4 text-black" />
         </div>
       </figure>
       <p className="flex justify-between items-center">
