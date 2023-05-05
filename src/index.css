@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.product-detail{
+  width: 360px;
+  height: calc(100vh - 72px);
+  top: 72px
+}

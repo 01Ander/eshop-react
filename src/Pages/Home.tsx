@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "../Components/Card";
 import { Layout } from "../Components/Layout";
 import { getData } from "../api/api";
+import { ProductDetail } from "../Components/ProductDetail";
 
 export const Home = (): JSX.Element => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -9,7 +10,6 @@ export const Home = (): JSX.Element => {
   useEffect(() => {
     getData()
       .then((data) => {
-        console.log(data);
         setProducts(data);
       })
       .catch((error) => console.log(error));
@@ -22,6 +22,7 @@ export const Home = (): JSX.Element => {
           <Card key={product.id} product={product} />
         ))}
       </div>
+      <ProductDetail />
     </Layout>
   );
 };
