@@ -12,8 +12,12 @@ export const Card = ({ product }: CardProps): JSX.Element => {
   const handleAddCardProduct = (): void => {
     context.setCount(context.count + 1);
   };
+  const handleClickCard = (product: Product): void => {
+    context.setProductToShow(product);
+    context.openProductDetail();
+  };
   return (
-    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
+    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg" onClick={() => handleClickCard(product)}>
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-2 left-2 bg-white/60 rounded-lg text-black text-xs px-3 py-0.5">
           {category.name}

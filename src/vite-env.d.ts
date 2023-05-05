@@ -3,9 +3,9 @@
 type Category = {
   id: number;
   name: string;
-  image: string;
-  creationAt: string;
-  updatedAt: string;
+  image?: string;
+  creationAt?: string;
+  updatedAt?: string;
 }
 
 type Product = {
@@ -14,7 +14,7 @@ type Product = {
   price: number;
   description: string;
   images: string[];
-  creationAt: string;
-  updatedAt: string;
+  creationAt?: string;
+  updatedAt?: string;
   category: Category;
 }
