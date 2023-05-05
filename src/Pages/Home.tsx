@@ -3,6 +3,7 @@ import { Card } from "../Components/Card";
 import { Layout } from "../Components/Layout";
 import { getData } from "../api/api";
 import { ProductDetail } from "../Components/ProductDetail";
+import { SideMenu } from "../Components/SideMenu";
 
 export const Home = (): JSX.Element => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -23,6 +24,7 @@ export const Home = (): JSX.Element => {
         ))}
       </div>
       <ProductDetail />
+      <SideMenu />
     </Layout>
   );
 };

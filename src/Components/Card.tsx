@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { MouseEvent, useContext } from "react";
 import { ShoppingCartContext } from "../Context";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
@@ -9,13 +9,15 @@ interface CardProps {
 export const Card = ({ product }: CardProps): JSX.Element => {
   const { title, price, category, images } = product;
   const context = useContext(ShoppingCartContext);
-  const handleAddCartProduct = (product: Product): void => {
-    context.setCount(context.count + 1);
+  const handleAddCartProduct = (e: MouseEvent<HTMLDivElement>, product: Product): void => {
+    e.stopPropagation();
     context.setCartProducts([...context.cartProducts, product]);
+    context.setCount(context.count + 1);
   };
   const handleClickCard = (product: Product): void => {
     context.setProductToShow(product);
     context.openProductDetail();
+    context.closeCartProducts();
   };
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-lg" onClick={() => handleClickCard(product)}>
@@ -29,7 +31,7 @@ export const Card = ({ product }: CardProps): JSX.Element => {
           className="w-full h-full object-cover rounded-lg"
         />
         <div className="absolute top-2 right-2 flex justify-center items-center bg-white w-6 h-6 rounded-full"
-          onClick={() => handleAddCartProduct(product)}
+          onClick={(e) => handleAddCartProduct(e, product)}
         >
           <PlusIcon className="h-4 w-4 text-black" />
         </div>

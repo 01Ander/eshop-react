@@ -8,6 +8,11 @@ export const Navbar = (): JSX.Element => {
 
   const activeStyle = "underline underline-offset-4";
 
+  const handleOpenCartProducts = (): void => {
+    context.openCartProducts();
+    context.closeProductDetail();
+  };
+
   return (
     <nav className="flex justify-between items-center fixed z-10 w-full py-4 px-8 text-sm font-light top-0">
       <ul className="flex items-center gap-4">
@@ -81,7 +86,10 @@ export const Navbar = (): JSX.Element => {
             Sing in
           </NavLink>
         </li>
-        <li className="flex items-center">
+        <li
+          className="flex items-center"
+          onClick={() => handleOpenCartProducts()}
+        >
           <ShoppingBagIcon className="h-6 w-6 cursor-pointer" />
           <div className="">{context.count}</div>
         </li>

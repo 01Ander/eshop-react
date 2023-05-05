@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.product-detail{
+.product-detail,
+.cart-side-menu {
   width: 360px;
   height: calc(100vh - 72px);
   top: 72px

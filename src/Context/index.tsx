@@ -10,6 +10,9 @@ type ShoppingCartContextType = {
   setProductToShow: (product: Product) => void;
   cartProducts: Product[];
   setCartProducts: (product: Product[]) => void;
+  isOpenCartProducts: boolean;
+  openCartProducts: () => void;
+  closeCartProducts: () => void;
 };
 
 type ShoppingCartProviderProps = {
@@ -35,7 +38,14 @@ export const ShoppingCartContext = createContext<ShoppingCartContextType>({
   cartProducts: [],
   setCartProducts: () => {
     // do nothing
-  }
+  },
+  isOpenCartProducts: false,
+  openCartProducts: () => {
+    // do nothing
+  },
+  closeCartProducts: () => {
+    // do nothing
+  },
 });
 
 export const ShoppingCartProvider = ({
@@ -54,6 +64,13 @@ export const ShoppingCartProvider = ({
   const [productToShow, setProductToShow] = useState({} as Product);
 
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
+  const [isOpenCartProducts, setIsOpenCartProducts] = useState<boolean>(false);
+  const openCartProducts = (): void => {
+    setIsOpenCartProducts(true);
+  };
+  const closeCartProducts = (): void => {
+    setIsOpenCartProducts(false);
+  };
 
   const contextValue = {
     count,
@@ -64,7 +81,10 @@ export const ShoppingCartProvider = ({
     productToShow,
     setProductToShow,
     cartProducts,
-    setCartProducts
+    setCartProducts,
+    isOpenCartProducts,
+    openCartProducts,
+    closeCartProducts,
   };
 
   return (
