@@ -27,7 +27,7 @@ export const ProductDetail = (): JSX.Element => {
         </figure>
         <h3 className="font-medium text-lg">{context.productToShow?.title}</h3>
         <p className="text-sm font-light">{context.productToShow?.description}</p>
-        <p className="text-lg font-medium">{context.productToShow?.price}</p>
+        <p className="text-lg font-medium">${context.productToShow?.price}</p>
         <p className="text-sm font-light">{context.productToShow.category?.name}</p>
       </div>
     </aside>
