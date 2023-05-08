@@ -1,9 +1,10 @@
-import { useContext } from "react"
-import { ShoppingCartContext } from "../Context"
-import { XCircleIcon } from "@heroicons/react/24/outline"
+import { useContext } from "react";
+import { ShoppingCartContext } from "../Context";
+import { XCircleIcon } from "@heroicons/react/24/outline";
+import { OrderCard } from "./OrderCard";
 
 export const SideMenu = () => {
-  const context = useContext(ShoppingCartContext)
+  const context = useContext(ShoppingCartContext);
   return (
     <aside
       className={`${
@@ -17,6 +18,11 @@ export const SideMenu = () => {
           onClick={() => context.closeCartProducts()}
         />
       </div>
+      <div className="overflow-y-scroll">
+        {context.cartProducts.map((product) => (
+          <OrderCard key={product.id} product={product} />
+        ))}
+      </div>
     </aside>
-  )
-}
+  );
+};
