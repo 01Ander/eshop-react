@@ -7,6 +7,7 @@ import NotFound from "./NotFound";
 import SingIn from "./SingIn";
 import { Navbar } from "../Components/Navbar";
 import { ShoppingCartProvider } from "../Context";
+import { SideMenu } from "../Components/SideMenu";
 
 const App = (): JSX.Element => {
   return (
@@ -14,6 +15,7 @@ const App = (): JSX.Element => {
       <ShoppingCartProvider>
         <BrowserRouter>
           <Navbar />
+          <SideMenu />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/my-account" element={<MyAccount />} />

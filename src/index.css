@@ -6,5 +6,6 @@
 .cart-side-menu {
   width: 360px;
   height: calc(100vh - 72px);
-  top: 72px
+  top: 72px;
+  z-index: 10;
 }
