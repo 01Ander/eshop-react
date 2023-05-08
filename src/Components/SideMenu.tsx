@@ -3,6 +3,7 @@ import { ShoppingCartContext } from "../Context";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { OrderCard } from "./OrderCard";
 import { totalPrices } from "../utils";
+import { Link } from "react-router-dom";
 
 export const SideMenu = () => {
   const context = useContext(ShoppingCartContext);
@@ -51,13 +52,19 @@ export const SideMenu = () => {
       <div className="flex flex-col">
         <p className="flex justify-between items-center mb-8">
           <span className="font-light">Total:</span>
-          <span className="font-medium text-2xl">${totalPrices(context.cartProducts)}</span>
+          <span className="font-medium text-2xl">
+            ${totalPrices(context.cartProducts)}
+          </span>
         </p>
-        <button className="bg-black rounded-lg p-4 text-white"  onClick={() => handleCheckout()}>
-          Checkout
-        </button>
+        <Link to="/my-orders/last" className="w-full">
+          <button
+            className="bg-black rounded-lg w-full p-4 text-white"
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
-
     </aside>
   );
 };

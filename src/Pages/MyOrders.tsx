@@ -1,28 +1,24 @@
-import { useContext } from "react"
-import { Layout } from "../Components/Layout"
+import { useContext } from "react";
+import { Layout } from "../Components/Layout";
 import { ShoppingCartContext } from "../Context";
+import { OrderCard } from "../Components/OrderCard";
 
-const MyOrders = ():JSX.Element => {
+const MyOrders = (): JSX.Element => {
   const context = useContext(ShoppingCartContext);
   return (
     <Layout>
-      my orders
-      {context.order.map((order) => (
-        <div key={order.date.toString()}>
-          <p>Date: {order.date.toString()}</p>
-          <p>Total price: {order.total}</p>
-          <p>Total products: {order.totalProducts}</p>
-          {order.products.map((product: Product) => (
-            <div key={product.id}>
-              <p>{product.title}</p>
-              <p>{product.price}</p>
-            </div>
-          ))}
-        </div>
-      ))}
+      My orders
+      <div className="flex flex-col w-80">
+        {context.order?.slice(-1)[0].products.map((product) => (
+          <OrderCard
+            key={product.id}
+            product={product}
+            handleDelete={undefined}
+          />
+        ))}
+      </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default MyOrders
-
+export default MyOrders;
