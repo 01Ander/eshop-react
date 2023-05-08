@@ -1,5 +1,12 @@
 import { createContext, ReactNode, useState } from "react";
 
+type myOrder = {
+  date: Date;
+  products: Product[];
+  total: number;
+  totalProducts: number;
+};
+
 type ShoppingCartContextType = {
   count: number;
   setCount: (count: number) => void;
@@ -13,6 +20,8 @@ type ShoppingCartContextType = {
   isOpenCartProducts: boolean;
   openCartProducts: () => void;
   closeCartProducts: () => void;
+  order: myOrder[];
+  setOrder: (product: myOrder[]) => void;
 };
 
 type ShoppingCartProviderProps = {
@@ -46,6 +55,10 @@ export const ShoppingCartContext = createContext<ShoppingCartContextType>({
   closeCartProducts: () => {
     // do nothing
   },
+  order: [],
+  setOrder: () => {
+    // do nothing
+  }
 });
 
 export const ShoppingCartProvider = ({
@@ -72,6 +85,8 @@ export const ShoppingCartProvider = ({
     setIsOpenCartProducts(false);
   };
 
+  const [order, setOrder] = useState<myOrder[]>([])
+
   const contextValue = {
     count,
     setCount,
@@ -85,6 +100,8 @@ export const ShoppingCartProvider = ({
     isOpenCartProducts,
     openCartProducts,
     closeCartProducts,
+    order,
+    setOrder,
   };
 
   return (

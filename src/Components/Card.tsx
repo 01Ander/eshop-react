@@ -25,7 +25,7 @@ export const Card = ({ product }: CardProps): JSX.Element => {
   const renderIcon = ({ id }: Product) => {
     const isInCart = context.cartProducts.filter((p) => p.id === id).length > 0;
     return isInCart ? (
-      <div className="absolute top-2 right-2 flex justify-center items-center bg-green-600 w-6 h-6 rounded-full">
+      <div className="absolute top-2 right-2 flex justify-center items-center bg-black w-6 h-6 rounded-full">
         <CheckIcon className="h-4 w-4 text-white" />
       </div>
     ) : (
