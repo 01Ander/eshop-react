@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../Context";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { OrderCard } from "./OrderCard";
+import { totalPrices } from "../utils";
 
 export const SideMenu = () => {
   const context = useContext(ShoppingCartContext);
@@ -27,8 +28,18 @@ export const SideMenu = () => {
       </div>
       <div className="overflow-y-scroll">
         {context.cartProducts.map((product) => (
-          <OrderCard key={product.id} product={product} handleDelete={handleDelete}/>
+          <OrderCard
+            key={product.id}
+            product={product}
+            handleDelete={handleDelete}
+          />
         ))}
+      </div>
+      <div>
+        <p className="flex justify-between items-center">
+          <span className="font-light">Total:</span>
+          <span className="font-medium text-2xl">${totalPrices(context.cartProducts)}</span>
+        </p>
       </div>
     </aside>
   );
