@@ -1,24 +1,23 @@
 import { useContext } from "react";
 import { Layout } from "../Components/Layout";
+import { OrderCards } from "../Components/OrdersCard";
 import { ShoppingCartContext } from "../Context";
-import { OrderCard } from "../Components/OrderCard";
+import { Link } from "react-router-dom";
 
-const MyOrders = (): JSX.Element => {
+export const MyOrders = (): JSX.Element => {
   const context = useContext(ShoppingCartContext);
   return (
     <Layout>
       My orders
-      <div className="flex flex-col w-80">
-        {context.order?.slice(-1)[0].products.map((product) => (
-          <OrderCard
-            key={product.id}
-            product={product}
-            handleDelete={undefined}
-          />
-        ))}
+      <div className="w-1/2">
+      {context.order?.map((order, index) => (
+        <div className="mx-6" >
+          <Link to={`/my-order/${index}`} className="mb-4">
+            <OrderCards key={index} order={order} />
+          </Link>
+        </div>
+      ))}
       </div>
     </Layout>
   );
 };
-
-export default MyOrders;

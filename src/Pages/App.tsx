@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Home } from "./Home";
 import MyAccount from "./MyAccount";
-import MyOrders from "./MyOrders";
+import { MyOrders } from "./MyOrders";
+import MyOrder from "./MyOrder";
 import NotFound from "./NotFound";
 import SingIn from "./SingIn";
 import { Navbar } from "../Components/Navbar";
@@ -20,7 +21,8 @@ const App = (): JSX.Element => {
             <Route path="/" element={<Home />} />
             <Route path="/my-account" element={<MyAccount />} />
             <Route path="/my-orders" element={<MyOrders />} />
-            <Route path="/my-orders/last" element={<MyOrders />} />
+            <Route path="/my-order/:id" element={<MyOrder />} />
+            <Route path="/my-order/last" element={<MyOrder />} />
             <Route path="/sing-in" element={<SingIn />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

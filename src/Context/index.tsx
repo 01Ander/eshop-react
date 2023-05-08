@@ -1,11 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
 
-type myOrder = {
-  date: Date;
-  products: Product[];
-  total: number;
-  totalProducts: number;
-};
 
 type ShoppingCartContextType = {
   count: number;

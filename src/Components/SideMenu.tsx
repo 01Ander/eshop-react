@@ -56,7 +56,7 @@ export const SideMenu = () => {
             ${totalPrices(context.cartProducts)}
           </span>
         </p>
-        <Link to="/my-orders/last" className="w-full">
+        <Link to="/my-order/last" className="w-full">
           <button
             className="bg-black rounded-lg w-full p-4 text-white"
             onClick={() => handleCheckout()}

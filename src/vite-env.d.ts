@@ -18,3 +18,10 @@ type Product = {
   updatedAt?: string;
   category: Category;
 }
+
+type myOrder = {
+  date: Date;
+  products: Product[];
+  total: number;
+  totalProducts: number;
+};
