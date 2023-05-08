@@ -1,7 +1,9 @@
-import { createContext, ReactNode, useState } from "react";
-
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { getData } from "../api/api";
 
 type ShoppingCartContextType = {
+  products: Product[];
+  setProducts: (products: Product[]) => void;
   count: number;
   setCount: (count: number) => void;
   isOpenProductDetail: boolean;
@@ -16,6 +18,10 @@ type ShoppingCartContextType = {
   closeCartProducts: () => void;
   order: myOrder[];
   setOrder: (product: myOrder[]) => void;
+  searchProduct: string | null;
+  setSearchProduct: (product: string) => void;
+  filteredProducts: Product[];
+  setFilteredProducts: (product: Product[]) => void;
 };
 
 type ShoppingCartProviderProps = {
@@ -23,6 +29,10 @@ type ShoppingCartProviderProps = {
 };
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({
+  products: [],
+  setProducts: () => {
+    // do nothing
+  },
   count: 0,
   setCount: () => {
     // do nothing
@@ -52,12 +62,29 @@ export const ShoppingCartContext = createContext<ShoppingCartContextType>({
   order: [],
   setOrder: () => {
     // do nothing
-  }
+  },
+  searchProduct: null,
+  setSearchProduct: () => {
+    // do nothing
+  },
+  filteredProducts: [],
+  setFilteredProducts: () => {
+    // do nothing
+  },
 });
 
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps): JSX.Element => {
+  const [products, setProducts] = useState<Product[]>([]);
+  useEffect(() => {
+    getData()
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   const [count, setCount] = useState<number>(0);
 
   const [isOpenProductDetail, setIsOpenProductDetail] =
@@ -79,9 +106,27 @@ export const ShoppingCartProvider = ({
     setIsOpenCartProducts(false);
   };
 
-  const [order, setOrder] = useState<myOrder[]>([])
+  const [order, setOrder] = useState<myOrder[]>([]);
+
+  const [searchProduct, setSearchProduct] = useState<string | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const filteredProductsFunction = (
+    products: Product[],
+    searchProduct: string
+  ) => {
+    return products?.filter((product) =>
+      product.title.toLowerCase().includes(searchProduct.toLowerCase())
+    );
+  };
+  useEffect(() => {
+    if (searchProduct) {
+      setFilteredProducts(filteredProductsFunction(products, searchProduct));
+    }
+  }, [products, searchProduct]);
 
   const contextValue = {
+    products,
+    setProducts,
     count,
     setCount,
     openProductDetail,
@@ -96,6 +141,10 @@ export const ShoppingCartProvider = ({
     closeCartProducts,
     order,
     setOrder,
+    searchProduct,
+    setSearchProduct,
+    filteredProducts,
+    setFilteredProducts,
   };
 
   return (
