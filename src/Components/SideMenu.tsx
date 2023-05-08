@@ -5,6 +5,13 @@ import { OrderCard } from "./OrderCard";
 
 export const SideMenu = () => {
   const context = useContext(ShoppingCartContext);
+
+  const handleDelete = (id: number) => {
+    const newCartProducts = context.cartProducts.filter((p) => p.id !== id);
+    context.setCartProducts(newCartProducts);
+    context.setCount(context.count - 1);
+  };
+
   return (
     <aside
       className={`${
@@ -20,7 +27,7 @@ export const SideMenu = () => {
       </div>
       <div className="overflow-y-scroll">
         {context.cartProducts.map((product) => (
-          <OrderCard key={product.id} product={product} />
+          <OrderCard key={product.id} product={product} handleDelete={handleDelete}/>
         ))}
       </div>
     </aside>
