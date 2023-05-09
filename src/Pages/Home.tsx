@@ -6,9 +6,14 @@ import { ShoppingCartContext } from "../Context";
 
 export const Home = (): JSX.Element => {
   const context = useContext(ShoppingCartContext);
-  const { products, filteredProducts, setSearchProduct } = context;
+  const { products, filteredProducts, setSearchProduct, productsByCategory } = context;
 
   const renderView = () => {
+    if (context.productsByCategory.length > 0) {
+      return productsByCategory?.map((product) => (
+        <Card key={product.id} product={product} />
+      ));
+    }
     if (context.searchProduct) {
       if (filteredProducts?.length > 0) {
         return filteredProducts?.map((product) => (

@@ -19,6 +19,11 @@ const App = (): JSX.Element => {
           <SideMenu />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/All" element={<Home />} />
+            <Route path="/clothes" element={<Home />} />
+            <Route path="/electronics" element={<Home />} />
+            <Route path="/furniture" element={<Home />} />
+            <Route path="/others" element={<Home />} />
             <Route path="/my-account" element={<MyAccount />} />
             <Route path="/my-orders" element={<MyOrders />} />
             <Route path="/my-order/:id" element={<MyOrder />} />

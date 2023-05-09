@@ -22,6 +22,8 @@ type ShoppingCartContextType = {
   setSearchProduct: (product: string) => void;
   filteredProducts: Product[];
   setFilteredProducts: (product: Product[]) => void;
+  productsByCategory: Product[];
+  setProductsByCategory: (product: Product[]) => void;
 };
 
 type ShoppingCartProviderProps = {
@@ -71,12 +73,17 @@ export const ShoppingCartContext = createContext<ShoppingCartContextType>({
   setFilteredProducts: () => {
     // do nothing
   },
+  productsByCategory: [],
+  setProductsByCategory: () => {
+    // do nothing
+  },
 });
 
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps): JSX.Element => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsByCategory, setProductsByCategory] = useState<Product[]>([]);
   useEffect(() => {
     getData()
       .then((data) => {
@@ -145,6 +152,8 @@ export const ShoppingCartProvider = ({
     setSearchProduct,
     filteredProducts,
     setFilteredProducts,
+    productsByCategory,
+    setProductsByCategory,
   };
 
   return (

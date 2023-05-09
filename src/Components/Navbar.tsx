@@ -2,15 +2,30 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../Context";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { getProductsByCategory } from "../api/api";
 
 export const Navbar = (): JSX.Element => {
   const context = useContext(ShoppingCartContext);
+  const { setProductsByCategory } = context;
 
   const activeStyle = "underline underline-offset-4";
 
   const handleOpenCartProducts = (): void => {
     context.openCartProducts();
     context.closeProductDetail();
+  };
+
+  const showProductsByCategory = async (
+    id: number
+  ): Promise<Product[]> => {
+    try {
+      const data = await getProductsByCategory(id);
+      setProductsByCategory(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
   };
 
   return (
@@ -22,6 +37,7 @@ export const Navbar = (): JSX.Element => {
         <li>
           <NavLink
             to="/all"
+            onClick={() => setProductsByCategory([])}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             All
@@ -30,6 +46,9 @@ export const Navbar = (): JSX.Element => {
         <li>
           <NavLink
             to="/clothes"
+            onClick={() => {
+              showProductsByCategory(1);
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Clothes
@@ -38,6 +57,9 @@ export const Navbar = (): JSX.Element => {
         <li>
           <NavLink
             to="/electronics"
+            onClick={() => {
+              showProductsByCategory(2);
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
@@ -46,6 +68,9 @@ export const Navbar = (): JSX.Element => {
         <li>
           <NavLink
             to="/furniture"
+            onClick={() => {
+              showProductsByCategory(3);
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Furniture
@@ -54,6 +79,9 @@ export const Navbar = (): JSX.Element => {
         <li>
           <NavLink
             to="/others"
+            onClick={() => {
+              showProductsByCategory(5);
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Others
