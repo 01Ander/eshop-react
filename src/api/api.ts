@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getData = (): Promise<Product[]> => {
   return axios
-    .get("https://api.escuelajs.co/api/v1/products?offset=0&limit=30")
+    .get("https://api.escuelajs.co/api/v1/products")
     .then((response) => {
       return response.data;
     })
